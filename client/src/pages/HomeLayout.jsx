@@ -42,6 +42,7 @@ const HomeLayout = () => {
     document.body.classList.toggle("Sky_mode", newTheme);
     localStorage.setItem("theme", newTheme);
   };
+  
   return (
     <HomelayoutContext.Provider value={{ theme, toggleTheme, user, adminDetails }}>
       <Wrapper className="jacket">

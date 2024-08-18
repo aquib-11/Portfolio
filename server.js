@@ -1,100 +1,93 @@
-  import "express-async-errors";
+import "express-async-errors";
 
-  import * as dotenv from "dotenv";
-  dotenv.config();
+import * as dotenv from "dotenv";
+dotenv.config();
 
-  import express from "express";
-  const app = express();
+import express from "express";
+const app = express();
 
+import morgan from "morgan";
+import mongoose from "mongoose";
+import cookieParser from "cookie-parser";
+import cloudinary from "cloudinary";
 
+import cron from "node-cron";
+import axios from "axios";
+// CLOUD_NAME = da7wrgyr2;
+// CLOUD_API_KEY = 761992414693754;
+// CLOUD_API_SECRET = ybN4qpXmnSZuH - OKqEWGD3UxBmY;
 
-  import morgan from "morgan";
-  import mongoose from "mongoose";
-  import cookieParser from "cookie-parser";
-  import cloudinary from "cloudinary";
+//routers
+import jobRouter from "./routes/jobrouter.js";
+import authRouter from "./routes/authRouter.js";
+import projectRouter from "./routes/projectRouter.js";
+import techstackRouter from "./routes/techstackroutes.js";
+import inboxRouter from "./routes/inboxRouter.js";
+import exprienceRouter from "./routes/exprienceRouter.js";
+import certificationRouter from "./routes/certificationRouter.js";
 
+//public
+import path, { dirname } from "path";
+import { fileURLToPath } from "url";
 
-  import cron from "node-cron";
-  import axios from "axios";
-  // CLOUD_NAME = da7wrgyr2;
-  // CLOUD_API_KEY = 761992414693754;
-  // CLOUD_API_SECRET = ybN4qpXmnSZuH - OKqEWGD3UxBmY;
+//middleware
+import errorHandlerMiddleware from "./middleware/errorhandlerMiddleware.js";
 
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
-  //routers
-  import jobRouter from "./routes/jobrouter.js";
-  import authRouter from "./routes/authRouter.js";
-  import projectRouter from"./routes/projectRouter.js"
-  import techstackRouter from "./routes/techstackroutes.js";
-  import inboxRouter from "./routes/inboxRouter.js"
-  import exprienceRouter from "./routes/exprienceRouter.js";
-  import certificationRouter from "./routes/certificationRouter.js";
-
-
-  //public
-  import path, {dirname} from "path"
-  import { fileURLToPath } from "url";
-
-  //middleware
-  import errorHandlerMiddleware from "./middleware/errorhandlerMiddleware.js";
-
-  cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.CLOUD_API_KEY,
-    api_secret: process.env.CLOUD_API_SECRET,
-  });
-
-
-  const __dirname = dirname(fileURLToPath(import.meta.url))
-
-
-  if (process.env.NODE_ENV === "devlopment") {
-    app.use(morgan("dev"));
-  }
-  app.use(express.static(path.resolve(__dirname, './client/dist')))
-  app.use(express.json());
-  app.use(cookieParser());
+if (process.env.NODE_ENV === "devlopment") {
+  app.use(morgan("dev"));
+}
+app.use(express.static(path.resolve(__dirname, "./public")));
+app.use(express.json());
+app.use(cookieParser());
 
 app.get("/api/v1/health", (req, res) => {
   res.status(200).json({ msg: "Server is running!" });
-}); 
+});
 cron.schedule("*/14 * * * *", async () => {
   try {
-    const response = await axios.get(
-      "http://localhost:5000/api/v1/health"
-    );
+    const response = await axios.get("http://localhost:5000/api/v1/health");
     console.log(`Health check successful: ${response.data.msg}`);
   } catch (error) {
     console.error(`Health check failed: ${error.message}`);
   }
 });
 
-  app.use("/api/v1/auth", authRouter);
-  app.use("/api/v1/jobs", jobRouter);
-  app.use("/api/v1/projects", projectRouter);
-  app.use("/api/v1/techstacks", techstackRouter);
-  app.use("/api/v1/inboxs", inboxRouter);
-  app.use("/api/v1/expriences", exprienceRouter);
-  app.use("/api/v1/certifications", certificationRouter);
+app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/jobs", jobRouter);
+app.use("/api/v1/projects", projectRouter);
+app.use("/api/v1/techstacks", techstackRouter);
+app.use("/api/v1/inboxs", inboxRouter);
+app.use("/api/v1/expriences", exprienceRouter);
+app.use("/api/v1/certifications", certificationRouter);
 
+// entry point prod...
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "./public", "index.html"));
+});
 
+//not found
+app.use("*", (req, res) => {
+  res.status(404).json({ msg: "route not found " });
+});
 
-  //not found
-  app.use("*", (req, res) => {
-    res.status(404).json({ msg: "route not found " });
+//err HANDLING  middleware
+app.use(errorHandlerMiddleware);
+
+const port = process.env.PORT;
+try {
+  await mongoose.connect(process.env.MONGO_URL);
+  app.listen(port, () => {
+    console.log(`server listening on ${port}...`);
   });
-
-  //err HANDLING  middleware
-  app.use(errorHandlerMiddleware);
-
-  const port = process.env.PORT;
-  try {
-    await mongoose.connect(process.env.MONGO_URL);
-    app.listen(port, () => {
-      console.log(`server listening on ${port}...`);
-    });
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
+} catch (error) {
+  console.log(error);
+  process.exit(1);
+}

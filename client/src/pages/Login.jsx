@@ -27,7 +27,7 @@ const Login = () => {
   return (
     <Wrapper>
       <Form method="post">
-        <h4 className="formHeading">Login Page</h4>
+        <h4 className="formHeading">Admin Login</h4>
         <div className="reactForm">
           <FormRow
             type="email"
@@ -42,12 +42,6 @@ const Login = () => {
           <button type="submit" className="formBtn" disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Submit"}
           </button>
-          <p>
-            Don't have an account{" "}
-            <Link className="register" to="../register">
-              register
-            </Link>
-          </p>
         </div>
       </Form>
     </Wrapper>
