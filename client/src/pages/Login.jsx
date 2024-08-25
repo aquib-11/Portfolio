@@ -1,9 +1,4 @@
-import {
-  Form,
-  Link,
-  redirect,
-  useNavigation,
-} from "react-router-dom";
+import { Form, Link, redirect, useNavigation } from "react-router-dom";
 import Wrapper from "../assets/wrapper/about";
 import FormRow from "../components/formRow";
 import customFetch from "../utils/customFetch";
@@ -29,16 +24,8 @@ const Login = () => {
       <Form method="post">
         <h4 className="formHeading">Admin Login</h4>
         <div className="reactForm">
-          <FormRow
-            type="email"
-            name="email"
-            labelText="email"
-          />
-          <FormRow
-            type="password"
-            name="password"
-            labelText="password"
-          />
+          <FormRow type="email" name="email" labelText="email" />
+          <FormRow type="password" name="password" labelText="password" />
           <button type="submit" className="formBtn" disabled={isSubmitting}>
             {isSubmitting ? "Submitting..." : "Submit"}
           </button>

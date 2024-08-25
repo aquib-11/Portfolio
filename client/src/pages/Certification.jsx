@@ -25,11 +25,8 @@ const Certification = () => {
   return (
     <Wrapper>
       <div className="head">
-        <h1>Work</h1>
-        <p>
-          Driven by passion, crafting diverse projects and innovative ideas with
-          dedication.
-        </p>
+        <h1>Certification</h1>
+        <p>Certifications reflecting my growth journey</p>
       </div>
       <Div>
         {certifications.map((certification) => {
@@ -66,8 +63,8 @@ const Certification = () => {
             </div>
           );
         })}
-  </Div>
-  </Wrapper>
+      </Div>
+    </Wrapper>
   );
 };
 const Div = styled.div`
