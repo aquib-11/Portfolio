@@ -110,11 +110,11 @@ const router = createBrowserRouter([
         element: <Login />,
         action: LoginAction,
       },
-      {
-        path: "register",
-        element: <Register />,
-        action: RegisterAction,
-      },
+      // {
+      //   path: "register",
+      //   element: <Register />,
+      //   action: RegisterAction,
+      // },
       {
         path: "/edit-project/:id",
         element: <EditProject />,

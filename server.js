@@ -44,7 +44,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 if (process.env.NODE_ENV === "devlopment") {
   app.use(morgan("dev"));
 }
-app.use(express.static(path.resolve(__dirname, "./public")));
+app.use(express.static(path.resolve(__dirname, "./client/dist")));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -53,7 +53,7 @@ app.get("/api/v1/health", (req, res) => {
 });
 cron.schedule("*/14 * * * *", async () => {
   try {
-    const response = await axios.get("http://localhost:5000/api/v1/health");
+    const response = await axios.get("https://aquib-dev-nest.onrender.com/");
     console.log(`Health check successful: ${response.data.msg}`);
   } catch (error) {
     console.error(`Health check failed: ${error.message}`);
@@ -70,7 +70,7 @@ app.use("/api/v1/certifications", certificationRouter);
 
 // entry point prod...
 app.get("*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./public", "index.html"));
+  res.sendFile(path.resolve(__dirname, "./client/dist", "index.html"));
 });
 
 //not found
