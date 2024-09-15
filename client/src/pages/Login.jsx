@@ -23,7 +23,9 @@ const Login = () => {
     <Wrapper>
       <Form method="post">
         <h4 className="formHeading">Admin Login</h4>
-        <div className="reactForm">
+        <div
+          className="reactForm"
+        >
           <FormRow type="email" name="email" labelText="email" />
           <FormRow type="password" name="password" labelText="password" />
           <button type="submit" className="formBtn" disabled={isSubmitting}>
@@ -35,3 +37,14 @@ const Login = () => {
   );
 };
 export default Login;
+/* .reactForm {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  padding: 2rem 4rem;
+  border:1px solid var(--border-1);
+  background-color: var(--background-color-1);
+  margin-top: 2rem;
+  border-radius: 20px;
+  position: relative;
+} */

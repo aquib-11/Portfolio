@@ -32,7 +32,6 @@ const Contact = () => {
 
   const navigation = useNavigation();
   const isSubmitting = navigation.state === "submitting";
-  const [formStyle, setFormStyle] = useState(true);
   // user auth
   const { isAuthenticated, loginWithRedirect, isLoading, user  } =
     useAuth0();
@@ -43,29 +42,21 @@ const Contact = () => {
         <h1>Get in touch</h1>
         <p>Let's create something extraordinary.</p>
         <Form method="post" encType="multipart/form-data">
-          <div className={`reactForm ${formStyle ? "" : "changeForm"}`}>
+          <div className={`reactForm`}>
             <FormRow
               type="name"
               name="name"
               labelText="name"
-              disable={isUser}
               value={isUser && user.name}
             />
             <FormRow
               type="email"
               name="email"
               labelText="email"
-              disable={isUser}
               value={user && user.email}
             />
             <FormRow type="subject" name="subject" labelText="subject" />
             <FormTextareaRow name="message" labelText="message" />
-            <span
-              className="formStyle"
-              onClick={() => setFormStyle((prev) => !prev)}
-            >
-              {formStyle ? <FaToggleOn /> : <FaToggleOff />}
-            </span>
             {isUser || userRole ==="admin" ? (
               <button type="submit" className="formBtn" disabled={isSubmitting}>
                 {isSubmitting ? "Submitting..." : "Submit"}

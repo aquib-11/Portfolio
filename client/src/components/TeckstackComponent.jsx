@@ -51,7 +51,7 @@ const Wrapper = styled.div`
   .card {
     position: relative;
     background-color: var(--background-color-1);
-    box-shadow: var(--shadow-1);
+    border: 1px solid var(--border-1);
     border-radius: 20px;
     width: 300px;
     height: 300px;

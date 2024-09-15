@@ -43,67 +43,47 @@ const Header = () => {
     
   return (
     <Wrapper>
-      <div className="img-container">
-        <img src={avatar} alt="profile"></img>
-      </div>
-      <div className="container bio">
-        <div className="name">
-          <h1>{name}</h1>
-          {user.userRole === "admin" && (
-            <span>
-              <Link to={`update-details/${_id}`}>
-                <CiEdit />
-              </Link>
-            </span>
-          )}
+      <div className="profile">
+        <div className="img-container">
+          <img src={avatar} alt="profile"></img>
         </div>
-        <span>{headline}</span>
-        <div className="social-icons">
-          <a href={GithubUrl}>
-            <FaGithub />
-          </a>
-          <a href={LinkedUrl}>
-            <FaLinkedinIn />
-          </a>
-          <a href={whatappUrl} target="_blank">
-            <FaWhatsapp />
-          </a>
+        <div className=" bio">
+          <div className="name">
+            <h1>{name}</h1>
+            {user.userRole === "admin" && (
+              <span>
+                <Link to={`update-details/${_id}`}>
+                  <CiEdit />
+                </Link>
+              </span>
+            )}
+          </div>
+          <span>{headline}</span>
         </div>
       </div>
-      <ul className="container info">
-        <li>
-          <span>email</span>
-          <a href={`mailto:${email}`}>{email}</a>
-        </li>
-        <li>
-          <span>Phone</span>
-          <a href={`tel:${phone}`}>{phone}</a>
-        </li>
-      </ul>
-      <ul className="container info">
-        <li>
-          <span>Birthday</span>
-          <a href="#">{birthday}</a>
-        </li>
-        <li>
-          <span>Location</span>
-          <a href="#">{location}</a>
-        </li>
-      </ul>
-      <div className="actions">
+
+      <div className="social-icons">
+        <a href={GithubUrl}>
+          <FaGithub />
+        </a>
+        <a href={LinkedUrl}>
+          <FaLinkedinIn />
+        </a>
+        <a href={whatappUrl} target="_blank">
+          <FaWhatsapp />
+        </a>
         <span onClick={toggleTheme} className="toggleTheme">
           {theme ? <FaSkyatlas /> : <MdOutlineDarkMode />}
         </span>
         {user.userRole === "admin" && (
           <Form method="post" action={`/logout`}>
-            <button className="logOut">
+            <button>
               <HiOutlineLogout />
             </button>
           </Form>
         )}
         {isUser && (
           <button
-            className="logOut"
             onClick={() => {
               logout({
                 logoutParams: { returnTo: window.location.origin },

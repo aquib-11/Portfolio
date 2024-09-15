@@ -102,7 +102,7 @@ const Div = styled.div`
     gap: 1rem;
     padding: 2rem;
     border-radius: 20px;
-    box-shadow: var(--shadow-1);
+    border:1px solid var(--border-1);
     position: relative;
   }
   .details {

@@ -1,29 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: "Poppins", sans-serif;
+  font-family:"Montserrat", "Poppins", sans-serif;
   list-style: none;
   scroll-behavior: smooth;
 }
 :root {
   --light-bg-color: #e5e9f4;
   --dark-bg-color: #1d1e24;
-  --bg-color: #212428;
-  --color: white;
-  --sec-color: #878e99;
-  --hover: #ff014f;
-  --shadow: rgba(0, 0, 0, 0.549);
-  --background-color-1: linear-gradient(145deg, #1e2024, #23272b);
-  --shadow-1: 10px 10px 19px #1c1e22, -10px -10px 19px #262a2e;
-  --shadow-2: inset 21px 21px 19px #181a1d, inset -21px -21px 19px #202225;
-  --inner-shadow: 1px 4px 2px -3px rgba(0, 0, 0, 0.7) inset,
-    -1px -3px 3px -2px rgba(255, 255, 255, 0.2) inset;
-    --border-1:#000000dd;
-      --max-width: 1600px;
+  --bg-color: #25272b; /* Slightly lighter background */
+  --color: #f1f1f1; /* Off-white for softer text contrast */
+  --sec-color: #9aa0b0; /* Subtle light gray for secondary text */
+  --hover: #ff014f; /* Keep the striking hover color */
+  --shadow: rgba(0, 0, 0, 0.3); /* Softer shadow */
+  --background-color-1: linear-gradient(145deg, #23262a, #2a2d31); /* Softer gradient */
+  --shadow-1: 8px 8px 15px #222325, -8px -8px 15px #282b2f; /* Adjusted shadow */
+  --shadow-2: inset 21px 21px 19px #181a1d, inset -21px -21px 19px #202225; /* Can remain the same */
+  --inner-shadow: 1px 2px 1px rgba(0, 0, 0, 0.5) inset, -1px -2px 2px rgba(255, 255, 255, 0.15) inset; /* Softer inner shadow */
+  --border-1: #33343a; /* Softer border color */
+  --max-width: 1600px;
   --fluid-width: 95vw;
 }
 
@@ -101,18 +99,14 @@ body::-webkit-scrollbar-thumb {
   text-align: center;
   font-size: 2rem;
   margin-top: 1rem;
-}
-.reactForm {
-  display: grid;
-  gap: 2rem;
-  width: 100%;
-  padding: 2rem 4rem;
-  box-shadow: var(--shadow-1);
-  background-color: var(--background-color-1);
+}.reactForm {
+  border: 1px solid var(--border-1);
+  border-radius: 15px;
   margin-top: 2rem;
-  border-radius: 20px;
-  position: relative;
+  padding: 1rem;
+  max-width: 100%;
 }
+
 .formStyle {
   position: absolute;
   top: 1rem;
@@ -127,8 +121,9 @@ body::-webkit-scrollbar-thumb {
 }
 .formRow {
   display: grid;
-  gap: 0.5rem;
   position: relative;
+  margin-bottom: 1rem;
+  max-width: 100%;
 }
 .formLabel {
   font-size: 1.1rem;
@@ -143,6 +138,9 @@ body::-webkit-scrollbar-thumb {
   padding: 10px;
   box-shadow: var(--inner-shadow);
   border-radius: 10px;
+  margin-top: 1rem;
+  width: 100%;
+    max-width: 100%;
 }
 .formInput{
     font-size: 1.2rem;
@@ -153,13 +151,14 @@ body::-webkit-scrollbar-thumb {
 .formBtn {
   background-color: var(--background-color-1);
   border: none;
-  box-shadow: var(--shadow-1);
+  border:1px solid var(--border-1);
   padding: 15px;
   font-size: 1.1rem;
   color: var(--color);
   border-radius: 10px;
   transition: 0.4s;
   text-transform: uppercase;
+  
 }
 .formBtn:hover {
   color: green;
@@ -232,19 +231,9 @@ p {
 @media only screen and (max-width: 600px) {
 .grid {
   grid-template-columns:1fr;
-  width: 100%;
+  max-width: 100%;
 }
-.reactForm {
-  width: 100%;
-  display: grid;
-  gap: 1rem;
-  background-color: var(--background-color-1);
-  margin-top: 1rem;
-  border-radius: 20px;
-  position: relative;
-  padding: 1rem;border-radius: 5px;
 
-}
 .formStyle{
   display: none;
 }

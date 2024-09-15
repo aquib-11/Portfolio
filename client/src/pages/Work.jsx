@@ -85,10 +85,11 @@ const Work = () => {
 const Div = styled.div`
   padding: 1rem;
   display: grid;
-  grid-template-columns: ${({ projects }) => (projects.length > 0 ?  "repeat(3, 1fr)": "1fr")};
+  grid-template-columns: ${({ projects }) =>
+    projects.length > 0 ? "repeat(3, 1fr)" : "1fr"};
   gap: 2rem;
   .card {
-    box-shadow: var(--shadow-1);
+    border: 1px solid var(--border-1);
     border-radius: 20px;
     padding: 2rem;
     display: grid;
@@ -159,7 +160,7 @@ const Div = styled.div`
   img:hover {
     scale: 1.1;
   }
-  p{
+  p {
     font-size: 1.1rem;
     text-align: center;
     margin-top: 2rem;

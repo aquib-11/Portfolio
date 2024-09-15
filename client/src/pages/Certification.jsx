@@ -73,7 +73,7 @@ const Div = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   .card {
-    box-shadow: var(--shadow-1);
+    border:1px solid var(--border-1);
     border-radius: 20px;
     padding: 2rem;
     display: grid;
