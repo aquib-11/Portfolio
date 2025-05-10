@@ -34,7 +34,7 @@ const Work = () => {
       <Search
         desc={{
           heading: "Work",
-          para: "Creating innovative projects with passion.",
+          para: "Creating innovative projects with passion",
         }}
         types={types}
         name="projectType"
