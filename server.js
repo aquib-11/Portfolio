@@ -13,9 +13,7 @@ import cloudinary from "cloudinary";
 
 import cron from "node-cron";
 import axios from "axios";
-// CLOUD_NAME = da7wrgyr2;
-// CLOUD_API_KEY = 761992414693754;
-// CLOUD_API_SECRET = ybN4qpXmnSZuH - OKqEWGD3UxBmY;
+
 
 //routers
 import jobRouter from "./routes/jobrouter.js";
